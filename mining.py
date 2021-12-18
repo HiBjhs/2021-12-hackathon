@@ -1,4 +1,4 @@
-import hashlib, json
+mport hashlib, json
  
 class Block:
     def __init__(self, index, timestamp, prev_hash, transaction):
@@ -40,3 +40,6 @@ def mining(self, append_transaction):
             break
         nonce += 1
     return nonce
+
+
+
