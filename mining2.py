@@ -67,11 +67,11 @@ block.nonce = nonce #得られたnonceをブロックに格納
 
 block_chain.append(block) #完成したブロックを追加します。
 
-#以降5ブロック追加してみます。
+#以降5ブロック追加
 for i in range(5):
     # i+1番目のブロック, 現在時刻, 一つ前のブロックのハッシュ値, 取引データ で新しいブロックを生成します。
     block = Block(i+1, str(datetime.datetime.now()), block_chain[i].now_hash, ["取引データ"])
-    append_transaction = {'paiza' : '採掘報酬ゲット'+str(i)} #採掘報酬
+    append_transaction = {'aaa' : '採掘報酬ゲット'+str(i)} #採掘報酬
     nonce = block.mining(append_transaction) # i+1番目の採掘
     block.nonce = nonce #得られたnonceをブロックに格納
     block_chain.append(block) #完成したブロックを追加します。
