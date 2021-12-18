@@ -6,7 +6,7 @@ class Block:
         self.timestamp = timestamp
         self.prev_hash = prev_hash
         self.transaction = transaction
-        self.diff = 5 #難易度 diff を追加
+        self.diff = 10 #難易度 diff を追加
         self.now_hash = self.calc_hash()
         self.nonce = None #採掘時に計算する対象 nonce を追加
  
