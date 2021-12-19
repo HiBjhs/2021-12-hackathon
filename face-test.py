@@ -21,7 +21,7 @@ cascade_path =  '/usr/local/opt/opencv/share/opencv4/haarcascades/haarcascade_fr
 cascade = cv2.CascadeClassifier(cascade_path)
 
 ##Faceの設定
-subscription_key = 'API_KEY'#ここに取得したキー１を入力
+subscription_key = settings.AP#ここに取得したキー１を入力
 assert subscription_key
 face_api_url = 'https://springeryomouwa.cognitiveservices.azure.com/face/v1.0/detect'#ここに取得したエンドポイントのURLを入力
 
