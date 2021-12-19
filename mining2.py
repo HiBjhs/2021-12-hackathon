@@ -58,28 +58,30 @@ class Block:
 
 #ここからブロックを生成するコード
 import datetime
-block_chain = []
 
-block = Block(0, str(datetime.datetime.now()), '-', []) #最初のブロックを作成
-append_transaction = {'paiza' : 'genesis_block'}
-nonce = block.mining(append_transaction) #最初のブロックの採掘
-block.nonce = nonce #得られたnonceをブロックに格納
+def test():
+    block_chain = []
 
-block_chain.append(block) #完成したブロックを追加します。
-
-#以降5ブロック追加
-for i in range(5):
-    # i+1番目のブロック, 現在時刻, 一つ前のブロックのハッシュ値, 取引データ で新しいブロックを生成します。
-    block = Block(i+1, str(datetime.datetime.now()), block_chain[i].now_hash, ["取引データ"])
-    append_transaction = {'aaa' : '採掘報酬ゲット'+str(i)} #採掘報酬
-    nonce = block.mining(append_transaction) # i+1番目の採掘
+    block = Block(0, str(datetime.datetime.now()), '-', []) #最初のブロックを作成
+    append_transaction = {'paiza' : 'genesis_block'}
+    nonce = block.mining(append_transaction) #最初のブロックの採掘
     block.nonce = nonce #得られたnonceをブロックに格納
+
     block_chain.append(block) #完成したブロックを追加します。
 
+    #以降5ブロック追加
+    for i in range(5):
+        # i+1番目のブロック, 現在時刻, 一つ前のブロックのハッシュ値, 取引データ で新しいブロックを生成します。
+        block = Block(i+1, str(datetime.datetime.now()), block_chain[i].now_hash, ["取引データ"])
+        append_transaction = {'aaa' : '採掘報酬ゲット'+str(i)} #採掘報酬
+        nonce = block.mining(append_transaction) # i+1番目の採掘
+        block.nonce = nonce #得られたnonceをブロックに格納
+        block_chain.append(block) #完成したブロックを追加します。
 
-for block in block_chain:
-    #nonceとブロックのハッシュ値を使ってブロックがルールを満たしているか検証
-    nonce_joined = block.now_hash+str(block.nonce)
-    calced = hashlib.sha256(nonce_joined.encode('ascii')).hexdigest()
 
-    print("index =", block.index ,"sha256(", block.now_hash, "+", block.nonce, ") =", calced)
+    for block in block_chain:
+        #nonceとブロックのハッシュ値を使ってブロックがルールを満たしているか検証
+        nonce_joined = block.now_hash+str(block.nonce)
+        calced = hashlib.sha256(nonce_joined.encode('ascii')).hexdigest()
+
+        print("index =", block.index ,"sha256(", block.now_hash, "+", block.nonce, ") =", calced)
